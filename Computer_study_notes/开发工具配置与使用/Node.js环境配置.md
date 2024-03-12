@@ -1,9 +1,11 @@
 # node安装 #node #npm 
-[[Windows开发环境#Node.js环境 node]]
+[[Windows开发工具与环境#Node.js环境 node]]
 
 ***
 
-# npm 配置 #npm 
+# npm配置 #npm 
+
+## 修改全局模块和缓存目录(可选)
 
 node安装目录下创建全局模块目录**node_global**和缓存目录**node_cache**
 

@@ -1,6 +1,6 @@
 # hexo初始化 #hexo 
 *安装配置Node.js*  
-[[Windows开发环境#Node.js环境 node]]
+[[Windows开发工具与环境#Node.js环境 node]]
 
 *安装配置Git*  
 [[Git配置与使用#Git配置与连接 git]]
