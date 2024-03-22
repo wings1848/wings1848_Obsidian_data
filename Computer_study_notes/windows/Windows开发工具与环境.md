@@ -11,7 +11,7 @@
 # Microsoft Visual C++ 生成工具(Build Tools)
 
 [Microsoft Visual C++ Build Tools下载](https://visualstudio.microsoft.com/zh-hans/visual-cpp-build-tools/)
-*安装python和node开发工作负载*
+*安装C/C++开发工作负载*
 
 # Python解释器
 
@@ -38,3 +38,11 @@
 *推荐使用w64devkit*
 
 ***解压即安装,将安装目录以及`.\bin\`目录添加进系统环境变量path中***
+
+# Golang #go 
+
+[Go](https://golang.google.cn/dl/)
+
+# JDK #java #jdk 
+
+[JDK17](https://www.oracle.com/cn/java/technologies/downloads/#jdk17-windows)

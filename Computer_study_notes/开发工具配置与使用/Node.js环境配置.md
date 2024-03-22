@@ -33,9 +33,9 @@ set-ExecutionPolicy RemoteSigned
 
 # npm命令 #npm 
 
-#清理包缓存    `npm cache clean --force`  
-#查看node全局根路径    `npm root -g`  
-
+- 清理包缓存    `npm cache clean --force`  
+- 查看node全局根路径    `npm root -g`  
+- 查看过时的包 `npm outdated`
 ***
 
 # npm包 #npm 
