@@ -29,19 +29,29 @@ npm install -g cnpm --registry https://registry.npm.taobao.org
 set-ExecutionPolicy RemoteSigned
 ```
 
-***
+---
 
-# npm命令 #npm 
+# npm命令 #npm
 
-- 清理包缓存    `npm cache clean --force`  
-- 查看node全局根路径    `npm root -g`  
-- 查看过时的包 `npm outdated`
-***
+- 清理包缓存  
+`npm cache clean --force`
+
+- 查看node全局根路径  
+`npm root -g`
+
+- 查看过时的包 
+`npm outdated`
+
+- 局部安装并写入项目运行时依赖文件
+`npm install <包名> --S`
+
+---
 
 # npm包 #npm 
 
-## hexo #hexo 
+- hexo #hexo 
 
-安装hexo  ``cnpm install -g hexo-cli``
+全局安装hexo  
+``npm install -g hexo-cli``
 
 [[Hexo配置与使用]]

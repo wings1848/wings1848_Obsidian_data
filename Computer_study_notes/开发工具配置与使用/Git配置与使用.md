@@ -78,3 +78,8 @@ git rm -r <文件>
 git commit -m "删除说明"
 git push <远程主机名> <分支名>
 ```
+
+- clone仓库
+```shell
+git clone git@github.com:<文件地址>
+```
