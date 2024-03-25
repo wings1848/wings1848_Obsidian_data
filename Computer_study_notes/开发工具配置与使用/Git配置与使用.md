@@ -30,6 +30,9 @@ User git
 连接github  
 `ssh -T git@github.com`
 
+443端口报错,可能是遇到了DNS污染  
+修改一下hosts文件将域名`ssh.github.com`指向正确ip即可
+
 ***
 
 # Git命令使用 #git 
