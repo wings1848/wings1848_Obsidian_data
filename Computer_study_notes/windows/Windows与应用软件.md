@@ -10,6 +10,8 @@
 
 [Obsidian](https://obsidian.md/download)
 
+[flomoapp](https://flomoapp.com)
+
 # 驱动程序 
 
 英特尔® 驱动程序和支持助理
@@ -18,6 +20,9 @@
 # 浏览器
 
 [Edge](https://www.microsoft.com/zh-cn/edge/download)
+
+插件
+[小舒同学](https://xiaoshuapp.com/)
 
 # 下载工具
 
@@ -62,7 +67,9 @@
 
 # 翻译工具
 
-[Pot跨平台翻译](https://pot-app.com/)
+[欧路词典](https://dict.eudic.net/)
+
+[有道灵动翻译插件](https://magicfanyi.youdao.com/#/)
 
 # 录制与直播工具
 
