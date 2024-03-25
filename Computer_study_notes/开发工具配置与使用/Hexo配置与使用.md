@@ -1,3 +1,13 @@
+---
+title: Hexo配置与使用
+author: wings1848
+date: 2024-03-25 11:30:37
+categories: 开发工具与使用
+tags: 
+  - node
+  - hexo
+keywords: #关键词
+---
 # hexo初始化 #hexo 
 *安装配置Node.js*  
 [[Windows开发工具与环境#Node.js环境 node]]
