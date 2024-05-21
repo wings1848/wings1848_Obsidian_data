@@ -6,8 +6,11 @@
   "strictLineBreaks": true,
   "livePreview": false,
   "alwaysUpdateLinks": true,
-  "propertiesInDocument": "hidden",
+  "propertiesInDocument": "source",
   "newFileLocation": "current",
   "attachmentFolderPath": "./",
-  "smartIndentList": false
+  "smartIndentList": false,
+  "foldHeading": false,
+  "newLinkFormat": "relative",
+  "useMarkdownLinks": false
 }
