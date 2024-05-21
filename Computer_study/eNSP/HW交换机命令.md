@@ -114,7 +114,7 @@ port-security mac-address sticky [mac] [vlan]
 
 ---
 
-## 交换机生成树与快速生成树
+## 生成树协议(STP)
 
 + 开启stp服务
 ```
@@ -152,13 +152,35 @@ stp edged-port enable
 
 ---
 
-## VLANIF
+## VLANIF(基于VLAN的三层逻辑接口)
 
 [配置VLANIF接口实现不同VLAN间的互通](https://support.huawei.com/enterprise/zh/doc/EDOC1100278264/fefe3be5)
 
-VLANIF接口是一种三层的逻辑接口，能实现不同VLAN间，不同网段的用户进行三层互通。
+实现不同VLAN间，不同网段的用户进行三层互通。
 
 + 创建并进入VLANIF接口
 ```
 int vlanif [vlan-id]
+```
+
+## Eth-Trunk(以太网链路聚合)
+
++ 创建Eth-Trunk接口并进入Eth-Trunk接口视图
+```
+interface eth-trunk [trunk-id]
+```
+
++ 在Eth-Trunk接口视图中配置链路聚合手工模式(*所有链路都参与负载分担*)
+```
+mode manual load-balance
+```
+
++ 在Eth-Trunk接口视图中,向Eth-Trunk中添加成员接口
+```
+trunkport [interface-type] [interface-number]
+```
+
++ 或在交换机接口视图中,将当前接口添加为Eth-Trunk接口的成员接口
+```
+eth-trunk [trunk-id]
 ```

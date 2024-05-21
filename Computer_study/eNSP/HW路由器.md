@@ -86,7 +86,7 @@ ip route-static [ip-address] [mask] [nexthop-address] preference [preference-id]
 
 ---
 
-## OSPF
+## OSPF(开放式最短路径优先协议)
 + 创建ospf进程
 ```
 ospf [process-id] <router-id>
@@ -130,9 +130,9 @@ dot1q termination vid [low-pe-vid]
 arp broadcast enable
 ```
 
-## VRRP
+## VRRP(虚拟路由冗余协议)
 
-+ 在接口中创建VRRP备份组并为备份组指定虚拟IP地址
++ 在路由接口中创建VRRP备份组并为备份组指定虚拟IP地址
 
 [vrrp vrid virtual-ip | 华为](https://support.huawei.com/enterprise/zh/doc/EDOC1100096315/95be2af1)
 ```
@@ -142,7 +142,7 @@ vrrp vrid [virtual-router-id] virtual-ip [virtual-address]
 	virtual-address 指定VRRP备份组的虚拟IP地址
 ```
 
-+ 在接口中配置VRRP备份组的优先级
++ 在路由接口中配置VRRP备份组的优先级
 
 [vrrp vrid priority | 华为](https://support.huawei.com/enterprise/zh/doc/EDOC1000128396/7eaf2d8a)
 ```
@@ -151,7 +151,7 @@ vrrp vrid [virtual-router-id] priority [priority-value]
 	priority-value 设备在VRRP备份组中的优先级,数值越大,优先级越高
 ```
 
-+ 在接口中启用VRRP监视***上行接口***状态实现主备快速切换(通过改变VRRP备份组的优先级)
++ 在路由接口中启用VRRP监视***上行接口***状态实现主备快速切换(通过改变VRRP备份组的优先级)
 
 上行接口:客户端向服务端发送请求的接口
 
