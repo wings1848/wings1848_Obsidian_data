@@ -26,7 +26,6 @@ http://mirrors.douxuedu.com/competition/chinaskills_cloud_iaas_v2.0.1.iso
 | 10.24.17.229 | compute |
 
 
-# 修改主机名
 ```shell
 [root@wings-1 ~]# hostnamectl set-hostname controller
 [root@wings-1 ~]# bash
@@ -49,6 +48,10 @@ http://mirrors.douxuedu.com/competition/chinaskills_cloud_iaas_v2.0.1.iso
 [root@controller ~]# ssh-copy-id compute
 
 [root@controller ~]# scp /etc/hosts compute:/etc/hosts
+
+[root@compute ~]# ssh-copy-id
+
+[root@compute ~]# ssh-copy-id controller
 ```
 
 # 配置yum源
