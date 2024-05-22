@@ -1,0 +1,16 @@
+{
+  "promptDelete": false,
+  "defaultViewMode": "preview",
+  "vimMode": false,
+  "showLineNumber": true,
+  "strictLineBreaks": true,
+  "livePreview": false,
+  "alwaysUpdateLinks": true,
+  "propertiesInDocument": "source",
+  "newFileLocation": "current",
+  "attachmentFolderPath": "./",
+  "userIgnoreFilters": null,
+  "useMarkdownLinks": true,
+  "newLinkFormat": "relative",
+  "foldHeading": false
+}
