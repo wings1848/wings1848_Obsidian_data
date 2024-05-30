@@ -12,5 +12,5 @@
   "userIgnoreFilters": null,
   "useMarkdownLinks": true,
   "newLinkFormat": "relative",
-  "foldHeading": false
+  "foldHeading": true
 }

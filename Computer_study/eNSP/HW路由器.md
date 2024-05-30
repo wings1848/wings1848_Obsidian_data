@@ -164,9 +164,46 @@ vrrp vrid [virtual-router-id] track interface [interface-type] [interface-nu
 	increased [value-increased] 优先级增加的数值
 ```
 
-## 网络访问控制安全管理
+## 本地用户管理
 
-+ 进入网络访问控制安全管理框架
++ 进入网络访问控制安全管理框架(aaa视图)
 ```
 aaa
+```
+
+[配置本地用户接入与认证 | 华为](https://support.huawei.com/enterprise/zh/doc/EDOC1100127139/df3fb67a)
+
+[local-user | 华为](https://support.huawei.com/enterprise/zh/doc/EDOC1100064377/a4a00613)
+
++ 在aaa视图中创建本地用户并设置密码
+
+```
+local-user [user-name] password {cipher | irreversible-cipher} [password]
+
+	cipher 对密码使用可逆算法加密
+	irreversible-cipher 对密码使用不可逆算法加密
+```
+
++ 配置本地用户的接入类型
+```
+local-user [user-name] service-type [type]
+```
+
+## 点对点封装协议(PPP)
+
+*先创建本地用户,用户的接入类型为ppp*
+
++ 在接口视图中配置封装的链路层协议为ppp
+
+[PPP配置 | 华为](https://support.huawei.com/enterprise/zh/doc/EDOC1100041710/b3f74c52)
+
+```
+link-protocol ppp
+```
+
++ 接口视图中配置本端设备对对端设备的认证方式
+```
+ppp authentication [{pap | ...}]
+
+	pap 启用pap认证
 ```

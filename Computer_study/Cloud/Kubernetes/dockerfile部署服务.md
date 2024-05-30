@@ -1,3 +1,12 @@
+---
+title: dockerfile部署服务
+author: wings1848
+date: 2024-05-30 16:55:34
+categories: 'ChinaSkills云计算笔记'
+tags: 
+  - 'docker'
+keywords:
+---
 ```
 # /root/local.repo yum源文件
 
@@ -36,30 +45,29 @@ mysqladmin -u root password '<password>' # 设置root用户密码
 
 mysql -uroot -p<password>
 
-mysql -uroot -p<password> -e "grant all on *.* to root@'%' identified by '<password>';flush privileges;" # 加权限
-
 mysql -uroot -p<password> -e "create database <database name>;use <database name>;source <sql file>;" # 导入数据库文件
 ```
 
 ```dockerfile 
 # mariadb_dockerfile
 
-FROM centos:7.9.2009
+from centos:centos7.9.2009
 
-RUN rm -rf /etc/yum.repos.d/*
-COPY yum /opt/
-COPY local.repo /etc/yum.repos.d/
-RUN yum install mariadb-server -y
+run rm -rf /etc/yum.repos.d/*
+copy yum /opt/
+copy local.repo /etc/yum.repos.d/
 
-COPY init_mariadb.sh <sql file> /opt/
-RUN sh /opt/init_mariadb.sh
+run yum install mariadb-server -y
 
-EXPOSE 3306
-CMD ["mysqld_safe"]
+copy init_sql.sh <sql file> /opt/
+run sh /opt/init_sql.sh
+
+expose 3306
+cmd ["mysqld_safe"] # 在容器中以主进程启动mariadb服务
 ```
 
 ```shell
-docker build -t explorer-mysql:v1.0 -f mariadb_dockerfile /root/
+docker build -t explorer-mysql:v1.0 -f mariadb_dockerfile .
 ```
 
 ---
@@ -70,23 +78,24 @@ docker build -t explorer-mysql:v1.0 -f mariadb_dockerfile /root/
 
 ```dockerfile 
 # redis_dockerfile
-FROM centos:centos7.9.2009
+from centos:centos7.9.2009
 
-RUN rm -rf /etc/yum.repos.d/*
-COPY local.repo /etc/yum.repos.d/
+run rm -rf /etc/yum.repos.d/*
+copy yum /opt/yum
+copy local.repo /etc/yum.repos.d/
 
-COPY yum /opt/yum
-RUN yum install redis -y
+run yum install redis -y
 
-RUN sed -i 's/bind 127.0.0.1/bind 0.0.0.0/g' /etc/redis.conf
-RUN sed -i 's/protected-mode yes/protected-mode no/g' /etc/redis.conf
+run sed -i 's/bind 127.0.0.1/bind 0.0.0.0/g' /etc/redis.conf
+run sed -i 's/protected-mode yes/protected-mode no/g' /etc/redis.conf
+# 或master节点安装redis后拷贝配置文件,修改后copy配置文件
 
-EXPOSE 6379
-CMD ["redis-server"]
+expose 6379
+cmd ["redis-server"]
 ```
 
 ```shell
-docker build -t explorer-redis:v1.0 -f redis_dockerfile /root/
+docker build -t explorer-redis:v1.0 -f redis_dockerfile .
 ```
 
 # 部署Nginx
@@ -96,20 +105,23 @@ docker build -t explorer-redis:v1.0 -f redis_dockerfile /root/
 ```dockerfile
 # nginx_dockerfile
 
-FROM centos:centos7.9.2009
+from centos:centos7.9.2009
 
-RUN rm -rf /etc/yum.repos.d/*
-COPY local.repo /etc/yum.repos.d/
+run rm -rf /etc/yum.repos.d/*
+copy yum /opt/yum
+copy local.repo /etc/yum.repos.d/
 
-COPY yum /opt/yum
-RUN yum install nginx -y
+run yum install nginx -y
 
-EXPOSE 80
-CMD ["nginx","-g","daemon off;"]
+add nginx/app.tar.gz /
+copy nginx/nginx.conf /etc/nginx/
+
+expose 80
+cmd ["nginx","-g","daemon off;"]
 ```
 
 ```shell
-docker build -t explorer-nginx:v1.0 -f nginx/nginx_dockerfile .
+docker build -t explorer-nginx:v1.0 -f nginx_dockerfile .
 ```
 
 # 部署ERP

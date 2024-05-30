@@ -1,3 +1,11 @@
+---
+title: Windows与应用软件
+date: 2024-03-01 19:51:48
+categories: '计算机环境与配置'
+tags: 
+  - 'Windows'
+keywords: 
+---
 # USB启动盘制作工具
 
 [Rufus](https://rufus.ie/zh/)
@@ -24,8 +32,12 @@
 
 # 下载工具
 
-[Motrix](https://motrix.app/)
+[ImFile](https://imfile.io/)
+
 建议配套Edge浏览器插件食用，进阶设置中配置RPC授权密钥
+
+(Moxtrix停更,使用ImFile替代,浏览器插件仍可使用Moxtrix WebExtension)
+
 [Moxtrix WebExtension](https://microsoftedge.microsoft.com/addons/detail/moxtrix-webextension/cippeolfnaoolpljklgcccckmilehbfg?hl=zh-CN)
 
 # 杀毒软件
