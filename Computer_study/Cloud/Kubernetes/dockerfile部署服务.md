@@ -131,18 +131,18 @@ docker build -t explorer-nginx:v1.0 -f nginx_dockerfile .
 ```dockerfile
 # erp_dockerfile
 
-FROM centos:centos7.9.2009
+from centos:centos7.9.2009
 
-RUN rm -rf /etc/yum.repos.d/*
-COPY local.repo /etc/yum.repos.d/
+run rm -rf /etc/yum.repos.d/*
+copy yum /opt/yum
+copy local.repo /etc/yum.repos.d/
 
-COPY yum /opt/yum
-RUN yum install java-* -y
+run yum install java-* -y
 
-COPY app.jar /opt/
-CMD java -jar /opt/app.jar
+copy app.jar /opt/
 
-EXPOSE 9999
+expose 9999
+cmd java -jar /opt/app.jar
 ```
 
 ```shell
