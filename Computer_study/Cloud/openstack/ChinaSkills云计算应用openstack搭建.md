@@ -49,8 +49,6 @@ http://mirrors.douxuedu.com/competition/chinaskills_cloud_iaas_v2.0.1.iso
 
 [root@controller ~]# scp /etc/hosts compute:/etc/hosts
 
-[root@compute ~]# ssh-copy-id
-
 [root@compute ~]# ssh-copy-id controller
 ```
 

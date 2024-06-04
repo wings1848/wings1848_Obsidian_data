@@ -52,6 +52,7 @@ mysql -uroot -p<password> -e "create database <database name>;use <database name
 # mariadb_dockerfile
 
 from centos:centos7.9.2009
+env LC_ALL=en_US.UTF-8 # 设置UTF-8编码的语言环境
 
 run rm -rf /etc/yum.repos.d/*
 copy yum /opt/
@@ -61,6 +62,7 @@ run yum install mariadb-server -y
 
 copy init_sql.sh <sql file> /opt/
 run sh /opt/init_sql.sh
+
 
 expose 3306
 cmd ["mysqld_safe"] # 在容器中以主进程启动mariadb服务
