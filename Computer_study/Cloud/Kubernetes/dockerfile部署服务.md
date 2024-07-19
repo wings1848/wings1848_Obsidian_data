@@ -7,8 +7,9 @@ tags:
   - 'docker'
 keywords:
 ---
+准备
 ```
-# /root/local.repo yum源文件
+# local.repo yum源文件
 
 [yum]
 name=yum
@@ -17,22 +18,14 @@ gpgcheck=0
 enabled=1
 ```
 
-```txt
-使用的yum包可能在/FileServer/compose/Hyperf.tar.gz中
-或/docker-package/yum.tar.gz中
-
-把yum包存放在/root/yum
-
-docker镜像用Hyperf.tar.gz中的centos_7.9.2009.tar包
-```
-
 ```shell
-docker load -i centos_7.9.2009.tar # 导入centos7.9.2009镜像
+docker load -i centos_7.9.2009.tar
+# 将压缩文件中的centos7.9.2009.tar导入docker本地镜像仓库
 ```
 
 # 部署MariaDB
 
-+ 编写Dockerfile构建镜像explorer-mysql:v1.0，要求使用centos7.9.2009镜像作为基础镜像，完成MariaDB数据库的安装，设置root用户的密码为root，并设置MariaDB数据库开机自启。
++ 编写Dockerfile构建镜像`<tag-name:version>`，要求使用centos7.9.2009镜像作为基础镜像，完成MariaDB数据库的安装，设置UTF-8编码格式,设置root用户的密码为`<password>`，并设置MariaDB数据库开机自启。
 
 ```shell 
 # init_sql.sh 初始化脚本
@@ -45,6 +38,9 @@ mysqladmin -u root password '<password>' # 设置root用户密码
 
 mysql -uroot -p<password>
 
+mysql -uroot -p<password> -e "grant all on *.* to 'root'@'%' identified by '<password>';" # 加权限
+# flush privileges;
+
 mysql -uroot -p<password> -e "create database <database name>;use <database name>;source <sql file>;" # 导入数据库文件
 ```
 
@@ -55,7 +51,7 @@ from centos:centos7.9.2009
 env LC_ALL=en_US.UTF-8 # 设置UTF-8编码的语言环境
 
 run rm -rf /etc/yum.repos.d/*
-copy yum /opt/
+copy yum /opt/yum
 copy local.repo /etc/yum.repos.d/
 
 run yum install mariadb-server -y
@@ -69,7 +65,7 @@ cmd ["mysqld_safe"] # 在容器中以主进程启动mariadb服务
 ```
 
 ```shell
-docker build -t explorer-mysql:v1.0 -f mariadb_dockerfile .
+docker build -t <tag-name:version> -f mariadb_dockerfile .
 ```
 
 ---
@@ -80,6 +76,7 @@ docker build -t explorer-mysql:v1.0 -f mariadb_dockerfile .
 
 ```dockerfile 
 # redis_dockerfile
+
 from centos:centos7.9.2009
 
 run rm -rf /etc/yum.repos.d/*
@@ -90,14 +87,16 @@ run yum install redis -y
 
 run sed -i 's/bind 127.0.0.1/bind 0.0.0.0/g' /etc/redis.conf
 run sed -i 's/protected-mode yes/protected-mode no/g' /etc/redis.conf
-# 或master节点安装redis后拷贝配置文件,修改后copy配置文件
+
+# 或master节点安装redis,修改后copy配置文件
+# copy redis.conf /etc/redis.conf
 
 expose 6379
-cmd ["redis-server"]
+cmd ["redis-server","/etc/redis.conf"]
 ```
 
 ```shell
-docker build -t explorer-redis:v1.0 -f redis_dockerfile .
+docker build -t <tag-name:version> -f redis_dockerfile .
 ```
 
 # 部署Nginx
@@ -123,7 +122,7 @@ cmd ["nginx","-g","daemon off;"]
 ```
 
 ```shell
-docker build -t explorer-nginx:v1.0 -f nginx_dockerfile .
+docker build -t <tag-name:version> -f nginx_dockerfile .
 ```
 
 # 部署ERP
@@ -131,7 +130,7 @@ docker build -t explorer-nginx:v1.0 -f nginx_dockerfile .
 + 编写 Dockerfile 构建镜像erp-server:v1.0，要求使用centos7.9.2009 镜像作为基础镜像，完成 JDK 环境的安装，启动提供的 jar 包，并设置服务开机自启。
 
 ```dockerfile
-# erp_dockerfile
+# erp_java_dockerfile
 
 from centos:centos7.9.2009
 
@@ -144,11 +143,11 @@ run yum install java-* -y
 copy app.jar /opt/
 
 expose 9999
-cmd java -jar /opt/app.jar
+cmd ["java","-jar","/opt/app.jar"]
 ```
 
 ```shell
-docker build -t erp-server:v1.0 -f erp_dockerfile .
+docker build -t <tag-name:version> -f erp_dockerfile .
 ```
 
 # 部署Explorer(kodexplorer)
@@ -174,5 +173,5 @@ CMD ["httpd","-D","FOREGROUND"]
 ```
 
 ```shell
-docker build -t explorer-server:v1.0 -f kod_dockerfile .
+docker build -t <tag-name:version> -f kod_dockerfile .
 ```

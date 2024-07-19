@@ -13,7 +13,7 @@
   "Blue-Topaz-Codebox-Highlight@@mute-code-indent-line": false,
   "Blue-Topaz-Codebox-Highlight@@code-line-number": true,
   "blue-topaz-theme@@background-settings-workplace-theme-dark": "background-settings-workplace-theme-dark-blue-gas",
-  "blue-topaz-theme@@left-ribbon-style": "hide-left-ribbon-retention-drawer",
+  "blue-topaz-theme@@left-ribbon-style": "bt-bubble-ribbon",
   "blue-topaz-theme@@accent-strong@@dark": "#AE1C1C",
   "blue-topaz-theme@@accent-em@@dark": "#9F3BD6D6",
   "blue-topaz-theme@@internal-link-color@@dark": "#4861FDF5",

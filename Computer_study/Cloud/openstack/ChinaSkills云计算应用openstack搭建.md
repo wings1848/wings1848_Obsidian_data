@@ -105,7 +105,7 @@ vdb    253:16   0   50G  0 disk
 ```shell
 [root@controller ~]# vi /etc/openstack/openrc.sh
 
-# 快捷键取消注释
+# 使用快捷键取消注释
 Ctrl+g
 Shift+v
 x

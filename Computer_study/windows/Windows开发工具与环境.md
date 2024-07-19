@@ -1,4 +1,12 @@
-#开发环境 
+---
+title: Windows开发工具与环境
+author: Wings Butterfly
+date: 2024-03-01 19:57:41
+categories: '计算机环境与配置'
+tags: 
+  - 'Windows'
+keywords:
+---
 # 终端工具
 
 [Tabby下载](https://tabby.sh/)
